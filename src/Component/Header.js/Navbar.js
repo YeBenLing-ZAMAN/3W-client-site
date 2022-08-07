@@ -8,10 +8,11 @@ const Navbar = () => {
             <div className="bg-base-300">
                 <div className='navbar max-w-7xl mx-auto'>
                     <div className="flex-1">
-                        <p className="normal-case text-xl" >Logo</p>
+                        <p className="normal-case text-xl" >Faucets</p>
                     </div>
                     <div className="flex-none">
-                        <p className="font-bold">User Name<span></span> </p>
+                        <button className='btn btn-primary btn-outline mr-3'>logo</button>
+                        <button className='btn btn-primary btn-outline mr-3'>logo2</button>
 
                         <div className="dropdown dropdown-end mt-1">
                             <label tabIndex="0" className="">
