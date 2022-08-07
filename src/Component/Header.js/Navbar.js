@@ -1,23 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+    const navigate = useNavigate();
+
+    function homeNavigate(){
+        navigate('/')
+    }
     return (
         <div>
             {/* navbar */}
             <div className="bg-base-300">
                 <div className='navbar max-w-7xl mx-auto'>
                     <div className="flex-1">
-                        <p className="normal-case text-xl" >Faucets</p>
+                        <p onClick={homeNavigate} className="normal-case text-3xl font-bold hover:cursor-pointer" >Faucets</p>
                     </div>
                     <div className="flex-none">
                         <button className='btn btn-primary btn-outline mr-3'>logo</button>
-                        <button className='btn btn-primary btn-outline mr-3'>logo2</button>
+                        <button className='btn btn-primary btn-outline font-bold mr-3'>Connect Wallet</button>
 
                         <div className="dropdown dropdown-end mt-1">
                             <label tabIndex="0" className="">
                                 <div className="avatar mx-2">
-                                    <div className="w-10 rounded-full ring ring-offset-base-100 ring-offset-2">
+                                    <div className="w-10 rounded-full ring ring-offset-base-100 ring-offset-2 hover:cursor-pointer7">
                                         <img src="https://source.unsplash.com/mEZ3PoFGs_k" alt=''/>
                                     </div>
                                 </div>
