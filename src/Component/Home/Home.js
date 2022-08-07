@@ -2,6 +2,8 @@ import React from 'react';
 import Notice from '../Header.js/Notice';
 import RequestHistory from './RequestHistory';
 import Wallet from './Wallet';
+import ConnectWalletModal from '../Modal/connectWalletModal';
+
 
 const Home = () => {
     return (
@@ -15,6 +17,7 @@ const Home = () => {
                     </div>
                     <Wallet></Wallet>
                     <RequestHistory></RequestHistory>
+                    <ConnectWalletModal></ConnectWalletModal>
                 </div>
             </div>
         </>

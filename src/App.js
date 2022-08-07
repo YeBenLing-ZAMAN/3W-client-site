@@ -4,6 +4,8 @@ import Login from './Component/Authencation/Login';
 import SignUp from './Component/Authencation/SignUp';
 import Navbar from './Component/Header.js/Navbar';
 import Home from './Component/Home/Home';
+import Footer from './Component/Footer/Footer';
+
 
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
       </Routes>
+      <Footer></Footer>
     </>
   );
 }
