@@ -11,7 +11,7 @@ const Wallet = () => {
         console.log(data);
     }
     return (
-        <div className='p-6 lg:p-0'>
+        <div className='px-6 pt-2 lg:p-0'>
             <div className='p-4 bg-base-100'>
                 {/* notice section  */}
                 <div className='p-1 bg-slate-300 flex items-center'>

@@ -5,13 +5,14 @@ import HistoryTableRow from './HistoryTableRow';
 const RequestHistory = () => {
     const [allTransction, setAllTransction] = useState([]);
     const [transctionDetails, setTransctionDetails] = useState([]);
-    const [searchType, setSearchType] = useState('all');
+    const [searchType, setSearchType] = useState('EHT');
 
     useEffect(() => {
         fetch('tempData.json')
             .then(res => res.json())
             .then(data => {
                 setAllTransction(data);
+                setTransctionDetails(data.filter(item => item.type === "EHT"))
             })
     }, [])
 
@@ -23,19 +24,19 @@ const RequestHistory = () => {
     }
 
     return (
-        <>
-            <div className='mt-10 pb-10'>
-                <h3>Request History</h3>
-                <button className='btn btn-primary rounded-none mr-4' onClick={() => { showingTansctionDetails("EHT") }} style={{ color: searchType === 'EHT' ? "tomato" : "" }}>EHT Transction History</button>
-                <button className='btn rounded-none' onClick={() => { showingTansctionDetails("TestLink") }} style={{ color: searchType === 'TestLink' ? "tomato" : "" }}>Testlink Transction History</button>
+        <div className='px-6 lg:p-0 lg:bg-base-100'>
+            <div className='pb-10 px-4 bg-base-100'>
+                <h3 className='font-bold text-primary mb-4'>Request History</h3>
+                <button className={`btn ${searchType === 'EHT' ?"btn-primary": " btn-ghost"} btn-sm rounded-none mr-4`} onClick={() => { showingTansctionDetails("EHT") }} >EHT Transction History</button>
+                <button className={`btn ${searchType === 'TestLink' ?"btn-primary": " btn-ghost"} btn-sm mt-3 lg:mt-0 rounded-none mr-4`} onClick={() => { showingTansctionDetails("TestLink") }}>Testlink Transction History</button>
             </div>
 
-            <div className='w-full lg:w-2/5'>
-                <table className="table table-compact w-full">
+            <div className='px-05 lg:p-4 w-full lg:w-2/5 overflow-x-auto max-w-7xl pb-5 table-container'>
+                <table className="table table-compact table-zebra w-full">
                     {/* <!-- head --> */}
-                    <thead>
+                    <thead className='rounded-none	'>
                         <tr>
-                            <th>Serial NO</th>
+                            <th>Sr</th>
                             <th>Time</th>
                             <th>Amount</th>
                             <th>Hash</th>
@@ -53,7 +54,7 @@ const RequestHistory = () => {
                     </tbody>
                 </table>
             </div>
-        </>
+        </div>
     );
 };
 
