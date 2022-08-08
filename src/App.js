@@ -7,10 +7,11 @@ import Home from './Component/Home/Home';
 import Footer from './Component/Footer/Footer';
 import { useState } from 'react';
 import FAQ from './Component/FAQ';
+import ConnectWalletModal from './Component/Modal/connectWalletModal';
 
 
 function App() {
-  const [walletType, setWalletType] = useState([]);
+  const [walletType, setWalletType] = useState('Arbitrum Rinkeby');
   return (
     <>
     <Navbar setWalletType={setWalletType}></Navbar>
@@ -20,6 +21,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/faq" element={<FAQ />} />
       </Routes>
+      <ConnectWalletModal></ConnectWalletModal>
       <Footer></Footer>
     </>
   );

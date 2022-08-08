@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import ReCAPTCHA from "react-google-recaptcha";
 
-const Wallet = ({walletType}) => {
+const Wallet = ({ walletType }) => {
+    const [verfied, setVerfied] = useState(false);
     const { register, formState: { errors }, handleSubmit } = useForm();
 
 
@@ -10,6 +12,12 @@ const Wallet = ({walletType}) => {
     const onSubmit = async data => {
         console.log(data);
     }
+
+    function onChange(value) {
+        console.log("Captcha value:", value);
+        setVerfied(true);
+    }
+
     return (
         <div className='px-6 pt-2 lg:p-0'>
             <div className='p-4 bg-base-100'>
@@ -79,7 +87,13 @@ const Wallet = ({walletType}) => {
                         </div>
                         {/* <p className='text-red-500 my-2'>{loginError}</p> */}
                     </div>
-                    <input className='btn w-full max-w-xs text-white rounded-none mt-4' type="submit" value="Send Request" />
+
+                    <ReCAPTCHA
+                        className="w-full max-w-xs rounded-none mt-4"
+                        sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                        onChange={onChange}
+                    />,
+                    <input className='btn w-full max-w-xs text-white rounded-none mt-4' type="submit" value="Send Request" disabled={!verfied} />
                 </form>
             </div>
         </div>

@@ -36,7 +36,7 @@ const Navbar = ({setWalletType}) => {
                     <div className="flex-none">
                         <select className='btn btn-primary rounded-none mr-3 ' onChange={handleChange}>
                             {
-                                allChoiceCoin?.map(coin => <option className='text-left' key={coin.id} value={coin.name}> <span className='hidden lg:inline'>{coin.name}</span> </option>)
+                                allChoiceCoin?.map(coin => <option className='text-left' key={coin.id} value={coin.name}> {coin.name} </option>)
                             }
                         </select>
 
