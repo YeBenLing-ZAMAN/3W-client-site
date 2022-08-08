@@ -7,8 +7,6 @@ const Wallet = ({ walletType }) => {
     const { register, formState: { errors }, handleSubmit } = useForm();
 
 
-    /* use context API to store user information */
-
     const onSubmit = async data => {
         console.log(data);
     }
@@ -85,7 +83,6 @@ const Wallet = ({ walletType }) => {
                                 })}
                             />
                         </div>
-                        {/* <p className='text-red-500 my-2'>{loginError}</p> */}
                     </div>
 
                     <ReCAPTCHA

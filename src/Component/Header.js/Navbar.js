@@ -12,7 +12,7 @@ const Navbar = ({setWalletType}) => {
     }
 
     function handleChange(e) {
-        console.log(e.target.value);
+        // console.log(e.target.value);
         setWalletType(e.target.value);
     }
 
@@ -34,12 +34,11 @@ const Navbar = ({setWalletType}) => {
                         <p onClick={homeNavigate} className="text-primary normal-case text-3xl font-bold hover:cursor-pointer" >Faucets</p>
                     </div>
                     <div className="flex-none">
-                        <select className='btn btn-primary rounded-none mr-3 ' onChange={handleChange}>
+                        <select className='btn btn-primary rounded-none mr-3' onChange={handleChange}>
                             {
-                                allChoiceCoin?.map(coin => <option className='text-left' key={coin.id} value={coin.name}> {coin.name} </option>)
+                                allChoiceCoin?.map(coin => <option className='text-left' key={coin.id} value={coin.name}> {coin?.name.substr(0, 3)} </option>)
                             }
                         </select>
-
 
                         {/* wallect button part */}
                         <label htmlFor="connectWalletModal-popup" className='btn btn-primary btn-outline  rounded-none font-bold mr-3 text-md'>
