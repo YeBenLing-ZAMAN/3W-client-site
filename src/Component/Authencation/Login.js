@@ -74,7 +74,7 @@ const Login = () => {
                                     <input
                                         type="email"
                                         placeholder="Enter Your Email"
-                                        className="input input-bordered w-full max-w-xs"
+                                        className="input input-bordered w-full max-w-xs rounded-none"
                                         {...register("email", {
                                             required: {
                                                 value: true,
@@ -108,7 +108,7 @@ const Login = () => {
                                     <input
                                         type="password"
                                         placeholder="Enter Your Password"
-                                        className="input input-bordered w-full max-w-xs"
+                                        className="input input-bordered w-full max-w-xs rounded-none"
                                         autoComplete='off'
                                         {...register("password", {
                                             required: {
@@ -137,7 +137,7 @@ const Login = () => {
 
                                 <p className='text-red-500 my-2'>{loginError}</p>
 
-                                <input className='btn w-full max-w-xs text-white' type="submit" value="Login" />
+                                <input className='btn w-full max-w-xs text-white rounded-none' type="submit" value="Login" />
                             </form>
                             <p><small>New to here? <Link to='/signup' className='text-red-500'>Create New Account</Link></small></p>
                         </div>

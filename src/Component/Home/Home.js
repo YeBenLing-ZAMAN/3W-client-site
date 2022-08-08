@@ -5,7 +5,7 @@ import Wallet from './Wallet';
 import ConnectWalletModal from '../Modal/connectWalletModal';
 
 
-const Home = () => {
+const Home = ({walletType}) => {
     return (
         <>
             <Notice></Notice>
@@ -15,7 +15,7 @@ const Home = () => {
                         <h1 className='text-4xl font-bold'>Request testent Link</h1>
                         <p className='w-full md:w-1/2 mt-5'>Get testnet LINK for an account on one of the supported blockchain testnets so you can create and test your own oracle and Chainlinked smart contract</p>
                     </div>
-                    <Wallet></Wallet>
+                    <Wallet walletType={walletType}></Wallet>
                     <RequestHistory></RequestHistory>
                     <ConnectWalletModal></ConnectWalletModal>
                 </div>

@@ -1,0 +1,42 @@
+[
+    {
+        "id": "ajdj",
+        "name": "Arbitrum Rinkeby",
+        "image": "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579"
+    },
+    {
+        "id": "dfdf",
+        "name": "Avalanche Fuji",
+        "image":  "https://assets.coingecko.com/coins/images/12559/large/coin-round-red.png?1604021818"
+    },
+    {
+        "id": "eaef",
+        "name": "BNB Chain Testnet",
+        "image": "https://assets.coingecko.com/coins/images/825/large/bnb-icon2_2x.png?1644979850"
+    },
+    {
+        "id": "aopo",
+        "name": "Ethereum Rinkeby",
+        "image": "https://assets.coingecko.com/coins/images/279/large/ethereum.png?1595348880"
+    },
+    {
+        "id": "dksa",
+        "name": "Fantom Testnet",
+        "image": "https://assets.coingecko.com/coins/images/975/large/cardano.png?1547034860"
+    },
+    {
+        "id": "dagd",
+        "name": "Harmony Testnet",
+        "image":  "https://assets.coingecko.com/coins/images/4128/large/solana.png?1640133422"
+    },
+    {
+        "id": "wgva",
+        "name": "POA Network Sokol",
+        "image": "https://assets.coingecko.com/coins/images/12171/large/polkadot.png?1639712644"
+    },
+    {
+        "id": "eadw",
+        "name": "Polgon Mumbai",
+        "image": "https://assets.coingecko.com/coins/images/12171/large/polkadot.png?1639712644"
+    }
+]

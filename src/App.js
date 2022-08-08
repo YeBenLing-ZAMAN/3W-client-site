@@ -5,16 +5,20 @@ import SignUp from './Component/Authencation/SignUp';
 import Navbar from './Component/Header.js/Navbar';
 import Home from './Component/Home/Home';
 import Footer from './Component/Footer/Footer';
+import { useState } from 'react';
+import FAQ from './Component/FAQ';
 
 
 function App() {
+  const [walletType, setWalletType] = useState([]);
   return (
     <>
-    <Navbar></Navbar>
+    <Navbar setWalletType={setWalletType}></Navbar>
       <Routes>
-        <Route path='/' element={<Home/>}></Route>
+        <Route path='/' element={<Home walletType={walletType}/>}></Route>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/faq" element={<FAQ />} />
       </Routes>
       <Footer></Footer>
     </>
