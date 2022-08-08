@@ -1,39 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Loading from '../Loading';
 
 const SignUp = () => {
 
-    const [user, setUser] = useState(null);
-    const [tempUser, setTempUser] = useState(null);
-    const { register, formState: { errors }, handleSubmit, watch, reset } = useForm();
-    const navigate = useNavigate();
+    const { register, formState: { errors }, handleSubmit, watch } = useForm();
 
     const onSubmit = async data => {
-        // console.log(data);
+        console.log(data);
         const userInfo = { name: data.name, email: data.email, password: data.password };
         console.log(userInfo);
-        fetch(``, {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-            },
-            body: JSON.stringify(userInfo)
-        })
-            .then(res => res.json())
-            .then(inserted => {
-                // console.log(inserted);
-                if (inserted.insertedId) {
-                    console.log(`user added successfully`);
-                    // toast add korte hobe.
-                    setUser(data);
-                    reset();
-                } else {
-                    console.log('something wrong user is not added !')
-                }
-                // console.log("reuslt line 31 : ", inserted)
-            })
+
+         /* for API fetch send email and post pass and store it on DB and return a confirm res  */
 
     }
 
@@ -192,8 +171,6 @@ const SignUp = () => {
 
                                     </label>
                                 </div>
-
-                                {/* signInError */}
 
                                 <input className='btn w-full max-w-xs rounded-none text-white' type="submit" value="Register" />
                             </form>

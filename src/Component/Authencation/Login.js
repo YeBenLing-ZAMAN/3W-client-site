@@ -1,53 +1,18 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Loading from '../Loading';
 
 const Login = () => {
-    const [user, setUser] = useState(null);
-    const [loginError, setLoginError] = useState("");
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false)
 
 
     /* use context API to store user information */
 
     const onSubmit = async data => {
-        // console.log(data);
-        const email = data.email;
-        // console.log(email);
-        setIsLoading(true);
-        fetch(``, {
-            method: 'GET',
-            headers: {
-                'content-type': 'application/json',
-            }
-        })
-            .then(res => res.json())
-            .then(serverData => {
-                // console.log('user data', serverData);
-                console.log(serverData);
-                if (serverData?.email) {
-                    if (serverData?.password === data.password) {
-                        console.log("password matched");
-                        setUser(data);
-                        setIsLoading(false);
-
-                    } else {
-                        setLoginError('password is not match please retry');
-                        setIsLoading(false);
-                    }
-                } else {
-                    // console.log('failed');
-                    setLoginError('Email/user is not regiester yet');
-                    setIsLoading(false);
-                }
-            })
-    }
-
-    if (user) { 
-        navigate('/dashboard');
+         console.log(data);
+         /* for API fetch send email and get pass and confirm to match or not then update user state  */
     }
 
     if (isLoading) {
@@ -134,8 +99,6 @@ const Login = () => {
 
                                     </label>
                                 </div>
-
-                                <p className='text-red-500 my-2'>{loginError}</p>
 
                                 <input className='btn w-full max-w-xs text-white rounded-none' type="submit" value="Login" />
                             </form>
