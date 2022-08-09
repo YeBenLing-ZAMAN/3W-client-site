@@ -1,6 +1,5 @@
 import React from 'react';
 import Notice from '../Header.js/Notice';
-import RequestHistory from './RequestHistory';
 import Wallet from './Wallet';
 
 const Home = ({walletType}) => {
@@ -14,7 +13,6 @@ const Home = ({walletType}) => {
                         <p className='w-full md:w-1/2 mt-5'>Get testnet LINK for an account on one of the supported blockchain testnets so you can create and test your own oracle and Chainlinked smart contract</p>
                     </div>
                     <Wallet walletType={walletType}></Wallet>
-                    <RequestHistory></RequestHistory>
                 </div>
             </div>
         </>

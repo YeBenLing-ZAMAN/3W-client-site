@@ -1,25 +1,40 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import HistoryTableRow from './HistoryTableRow';
+import axios from 'axios';
 
-const RequestHistory = () => {
+
+const RequestHistory = ({ setHistoryChartReloader, historyChartReloader }) => {
     const [allTransction, setAllTransction] = useState([]);
     const [transctionDetails, setTransctionDetails] = useState([]);
     const [searchType, setSearchType] = useState('EHT');
 
     useEffect(() => {
-        fetch('tempData.json')
-            .then(res => res.json())
-            .then(data => {
-                setAllTransction(data);
-                setTransctionDetails(data.filter(item => item.type === "EHT"))
+        axios.get('http://localhost:5000/wallet_request')
+            .then(function (response) {
+                // handle success
+                console.log(response.data);
+                setAllTransction(response.data);
+                // setTransctionDetails(response.data.filter(item => item.requestAmount.toLowerCase().includes("ETH".toLowerCase())))
+                setTransctionDetails(response.data);
+                setHistoryChartReloader(false);
             })
-    }, [])
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .then(function () {
+                // always executed
+            });
 
+    }, [historyChartReloader, setHistoryChartReloader])
+
+    console.log(allTransction)
 
     const showingTansctionDetails = (target) => {
         setSearchType(target);
-        const findList = allTransction.filter(item => item.type === target);
+        // const findList = allTransction.filter(item => item.type === target);
+        const findList = (allTransction);
         setTransctionDetails(findList);
     }
 
@@ -27,11 +42,11 @@ const RequestHistory = () => {
         <div className='px-6 lg:p-0 lg:bg-base-100'>
             <div className='pb-10 px-4 bg-base-100'>
                 <h3 className='font-bold text-primary mb-4'>Request History</h3>
-                <button className={`btn ${searchType === 'EHT' ?"btn-primary": " btn-ghost"} btn-sm rounded-none mr-4`} onClick={() => { showingTansctionDetails("EHT") }} >EHT Transction History</button>
-                <button className={`btn ${searchType === 'TestLink' ?"btn-primary": " btn-ghost"} btn-sm mt-3 lg:mt-0 rounded-none mr-4`} onClick={() => { showingTansctionDetails("TestLink") }}>Testlink Transction History</button>
+                <button className={`btn ${searchType === 'EHT' ? "btn-primary" : " btn-ghost"} btn-sm rounded-none mr-4`} onClick={() => { showingTansctionDetails("EHT") }} >Transction History</button>
+                <button className={`btn ${searchType === 'TestLink' ? "btn-primary" : " btn-ghost"} btn-sm mt-3 lg:mt-0 rounded-none mr-4`} onClick={() => { showingTansctionDetails("TestLink") }}>Testlink Transction History</button>
             </div>
 
-            <div className='px-05 lg:p-4 w-full lg:w-2/5 overflow-x-auto max-w-7xl pb-5 table-container'>
+            <div className='px-05 lg:p-4 w-full overflow-x-auto max-w-7xl pb-5 table-container'>
                 <table className="table table-compact table-zebra w-full">
                     {/* <!-- head --> */}
                     <thead className='rounded-none	'>
@@ -45,7 +60,7 @@ const RequestHistory = () => {
                     <tbody>
                         {
                             transctionDetails?.map((item, index) => <HistoryTableRow
-                                key={item.id}
+                                key={item._id}
                                 item={item}
                                 index={index}
                             ></HistoryTableRow>)
