@@ -2,18 +2,46 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import Loading from '../Loading';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [isLoading, setIsLoading] = useState(false)
+    const navigate = useNavigate();
 
 
     /* use context API to store user information */
 
     const onSubmit = async data => {
-         console.log(data);
+        //  console.log(data);
          /* for API fetch send email and get pass and confirm to match or not then update user state  */
-         
+         setIsLoading(true);
+         await axios.post('https://dry-journey-20353.herokuapp.com/login', {
+            data: data,
+        })
+            .then(function (response) {
+                console.log(response);
+                if (response.status === 200) {
+                    toast.success("login successfull");
+                    navigate('/');
+                }
+                setIsLoading(false);
+            })
+            .catch(function (error) {
+                console.log(error);
+                if(error.message.toLowerCase().includes("400".toLowerCase())){
+                    toast.error("user is not Register");
+                    setTimeout(function(){
+                        navigate('/signup');
+                   }, 2000)
+
+                };
+                setIsLoading(false);
+            });
+
     }
 
     if (isLoading) {

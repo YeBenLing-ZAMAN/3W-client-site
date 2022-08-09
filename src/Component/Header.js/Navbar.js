@@ -17,7 +17,7 @@ const Navbar = ({setWalletType}) => {
     }
 
     useEffect(() => {
-        fetch('coins.json')
+        fetch('https://raw.githubusercontent.com/YeBenLing-ZAMAN/3W-job-task/main/public/coins.json')
             .then(res => res.json())
             .then(data => {
                 setAllChoiceCoin(data);

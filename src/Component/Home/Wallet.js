@@ -19,7 +19,7 @@ const Wallet = ({ walletType }) => {
         data.requestType = walletType
         console.log(data);
 
-        axios.post('http://localhost:5000/wallet_add', {
+        axios.post('https://dry-journey-20353.herokuapp.com/wallet_add', {
             data
         })
             .then(function (response) {

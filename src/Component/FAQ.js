@@ -4,7 +4,7 @@ import { useState } from 'react';
 const FAQ = () => {
     const [allFAQ, setAllFAQ] = useState([]);
     useEffect(() => {
-        fetch('FAQ.json')
+        fetch('https://raw.githubusercontent.com/YeBenLing-ZAMAN/3W-job-task/main/public/faq.json')
             .then(res => res.json())
             .then(data => {
                 setAllFAQ(data);

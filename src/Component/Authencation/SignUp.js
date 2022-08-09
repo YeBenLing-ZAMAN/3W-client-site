@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Controller, useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
 import Loading from '../Loading';
@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false)
 
     const { register, formState: { errors }, handleSubmit, control, watch } = useForm();
 
@@ -19,7 +20,9 @@ const SignUp = () => {
         console.log(data);
 
         /* for API fetch send email and post pass and store it on DB and return a confirm res  */
-        await axios.post('http://localhost:5000/signup', {
+        setIsLoading(true);
+
+        await axios.post('https://dry-journey-20353.herokuapp.com/signup', {
             data: data,
         })
             .then(function (response) {
@@ -28,18 +31,22 @@ const SignUp = () => {
                     toast.success("signup successfull");
                     navigate('/');
                 }
+                setIsLoading(false);
+
             })
             .catch(function (error) {
                 console.log(error);
                 if(error.message.toLowerCase().includes("422".toLowerCase())){
                     toast.error("user already register");
                 };
+                setIsLoading(false);
+
             });
 
     }
 
 
-    if (false) {
+    if (isLoading) {
         return <Loading></Loading>
     }
 

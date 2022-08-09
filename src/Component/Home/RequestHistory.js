@@ -10,7 +10,7 @@ const RequestHistory = ({ setHistoryChartReloader, historyChartReloader }) => {
     const [searchType, setSearchType] = useState('EHT');
 
     useEffect(() => {
-        axios.get('http://localhost:5000/wallet_add')
+        axios.get('https://dry-journey-20353.herokuapp.com/wallet_add')
             .then(function (response) {
                 // handle success
                 console.log(response.data);
