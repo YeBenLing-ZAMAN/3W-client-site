@@ -5,9 +5,13 @@ import Loading from '../Loading';
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
 import "react-phone-number-input/style.css";
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const SignUp = () => {
+    const navigate = useNavigate();
 
     const { register, formState: { errors }, handleSubmit, control, watch } = useForm();
 
@@ -20,13 +24,16 @@ const SignUp = () => {
         })
             .then(function (response) {
                 console.log(response);
-                if (response.data.acknowledged) {
-                    console.log(response.data.acknowledged);
+                if (response.status === 201) {
+                    toast.success("signup successfull");
+                    navigate('/');
                 }
             })
             .catch(function (error) {
                 console.log(error);
-                console.log(error.message);
+                if(error.message.toLowerCase().includes("422".toLowerCase())){
+                    toast.error("user already register");
+                };
             });
 
     }
@@ -122,7 +129,6 @@ const SignUp = () => {
                                             },
                                             pattern: {
                                                 value: /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
-                                                // value: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
                                                 message: 'Enter Vaild Email Address'
                                             }
                                         })}
