@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form';
 import ReCAPTCHA from "react-google-recaptcha";
 import RequestHistory from './RequestHistory';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+
 
 const Wallet = ({ walletType }) => {
     const [verfied, setVerfied] = useState(false);
@@ -17,18 +19,21 @@ const Wallet = ({ walletType }) => {
         data.requestType = walletType
         console.log(data);
 
-        axios.post('http://localhost:5000/wallet_request', {
-            data: data
+        axios.post('http://localhost:5000/wallet_add', {
+            data
         })
             .then(function (response) {
-                console.log(response);
-                if (response.data.acknowledged) {
-                    console.log(response.data.acknowledged);
-                    setHistoryChartReloader(true);
+                 console.log(response);
+                if (response.status === 201) {
+                    toast.success(response.data.message);
                 }
+                setHistoryChartReloader(true);
             })
             .catch(function (error) {
-                console.log(error);
+                if(error.message.toLowerCase().includes("422".toLowerCase())){
+                    toast.error("Wallet address already register")
+                };
+
             });
 
     }

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Loading from '../Loading';
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
 import "react-phone-number-input/style.css";
+import axios from 'axios';
 
 
 const SignUp = () => {
@@ -11,11 +12,22 @@ const SignUp = () => {
     const { register, formState: { errors }, handleSubmit, control, watch } = useForm();
 
     const onSubmit = async data => {
-        // console.log(data);
-        const userInfo = { firstName: data.firstName, lastName: data.lastName, email: data.email, password: data.password, phone: data.phone };
-        console.log(userInfo);
+        console.log(data);
 
         /* for API fetch send email and post pass and store it on DB and return a confirm res  */
+        await axios.post('http://localhost:5000/signup', {
+            data: data,
+        })
+            .then(function (response) {
+                console.log(response);
+                if (response.data.acknowledged) {
+                    console.log(response.data.acknowledged);
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+                console.log(error.message);
+            });
 
     }
 
@@ -30,14 +42,14 @@ const SignUp = () => {
             <div className='min-h-screen'>
                 <h1 className='text-3xl font-bold text-red-500 text-center mt-5 mb-5'>Welcome to Faucets.</h1>
                 <div className='flex justify-center items-center'>
-                    <div className="card w-full lg:w-1/2 bg-base-200 shadow-xl p-1">
+                    <div className="card w-full lg:w-1/2 bg-base-200 shadow-xl p-1 rounded-none">
                         <div className="card-body">
                             <h2 className="text-center text-2xl font-bold text-red-500">Registrate Here</h2>
                             <h2 className="text-center text-sm font-bold ">Then login and enjoy</h2>
 
                             <form onSubmit={handleSubmit(onSubmit)}>
 
-                                <div className='grid grid-col-1 lg:grid-cols-2 gap-x-2	'>
+                                <div className='grid grid-col-1 lg:grid-cols-2 gap-x-12 lg:justify-between'>
 
                                     {/* First name */}
                                     <div className="form-control w-full max-w-xs">
@@ -66,7 +78,7 @@ const SignUp = () => {
                                     </div>
 
                                     {/* last name */}
-                                    <div className="form-control w-full max-w-xs">
+                                    <div className="form-control w-full max-w-xs lg:justify-self-end">
                                         <label className="label">
                                             <span className="label-text">Last Name</span>
                                         </label>
@@ -132,7 +144,7 @@ const SignUp = () => {
                                 {/* phone number secction */}
 
                                 <div className='form-control w-full '>
-                                    <label htmlFor="phone">Phone Number</label>
+                                    <label htmlFor="phone" className='label-text'>Phone Number</label>
                                     <Controller
                                         name="phone"
                                         control={control}
@@ -157,7 +169,7 @@ const SignUp = () => {
 
                                 {/* password and confirm password section */}
 
-                                <div className='grid grid-col-1 lg:grid-cols-2 gap-x-2	'>
+                                <div className='grid grid-col-1 lg:grid-cols-2 gap-x-12	lg:justify-between'>
 
 
                                     <div className="form-control w-full max-w-xs">
@@ -177,7 +189,11 @@ const SignUp = () => {
                                                 },
                                                 minLength: {
                                                     value: 6,
-                                                    message: 'Must be 6 characters or longer'
+                                                    message: 'Minimum 6 characters and at least one upper letter, lower letter, one digit, one spacial character needed'
+                                                },
+                                                pattern: {
+                                                    value: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/,
+                                                    message: 'at least one upper letter, lower letter, one digit, one spacial character needed'
                                                 }
                                             })}
                                         />
@@ -191,19 +207,23 @@ const SignUp = () => {
                                                 className="label-text-alt text-red-500">
                                                 {errors.password.message}
                                             </span>}
+                                            {errors.password?.type === 'pattern' && <span
+                                                className="label-text-alt text-red-500">
+                                                {errors.password.message}
+                                            </span>}
 
                                         </label>
                                     </div>
 
                                     {/* confirm password */}
-                                    <div className="form-control w-full max-w-xs">
+                                    <div className="form-control w-full max-w-xs lg:justify-self-end">
                                         <label className="label">
                                             <span className="label-text">Confirm Password</span>
                                         </label>
 
                                         <input
                                             type="password"
-                                            placeholder="Enter Your Password"
+                                            placeholder="Enter Your Password for Confirm "
                                             className="input input-bordered w-full max-w-xs rounded-none"
                                             autoComplete='off'
                                             {...register("confirm_password", {

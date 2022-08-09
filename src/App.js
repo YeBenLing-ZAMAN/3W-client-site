@@ -8,7 +8,8 @@ import Footer from './Component/Footer/Footer';
 import { useState } from 'react';
 import FAQ from './Component/FAQ';
 import ConnectWalletModal from './Component/Modal/connectWalletModal';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [walletType, setWalletType] = useState('Arbitrum Rinkeby');
@@ -23,6 +24,7 @@ function App() {
       </Routes>
       <ConnectWalletModal></ConnectWalletModal>
       <Footer></Footer>
+      <ToastContainer></ToastContainer>
     </>
   );
 }
