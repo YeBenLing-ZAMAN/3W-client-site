@@ -25,7 +25,7 @@ const Login = () => {
             <div className="h-screen">
                 <h1 className='text-3xl font-bold text-red-500 text-center mt-20 mb-10'>welcome to Faucets</h1>
                 <div className='flex justify-center items-center'>
-                    <div className="card w-96 bg-base-100 shadow-xl p-5 rounded-none">
+                    <div className="card w-96 bg-base-200 shadow-xl p-5 rounded-none">
                         <div className="card-body">
                             <h2 className="text-center text-2xl font-bold text-red-500">Login</h2>
 
