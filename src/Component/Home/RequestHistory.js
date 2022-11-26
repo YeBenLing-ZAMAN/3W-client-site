@@ -29,7 +29,6 @@ const RequestHistory = ({ setHistoryChartReloader, historyChartReloader }) => {
 
     }, [historyChartReloader, setHistoryChartReloader])
 
-    console.log(allTransction)
 
     const showingTansctionDetails = (target) => {
         setSearchType(target);

@@ -44,7 +44,7 @@ const Wallet = ({ walletType }) => {
 
     /* rechapta confirmation function*/
     function onChange(value) {
-        // console.log("Captcha value:", value);
+        console.log("Captcha value:", value);
         setVerfied(true);
     }
 
@@ -122,7 +122,7 @@ const Wallet = ({ walletType }) => {
 
                         <ReCAPTCHA
                             className="w-full max-w-xs rounded-none mt-4"
-                            sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                            sitekey="6LdRVV8hAAAAACjNUdL4MaUZlyyuZg3cbZuVbN81"
                             onChange={onChange}
                         />,
                         <input className='btn w-full max-w-xs text-white rounded-none mt-4' type="submit" value="Send Request" disabled={!verfied} />

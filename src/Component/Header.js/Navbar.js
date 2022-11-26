@@ -30,13 +30,13 @@ const Navbar = ({setWalletType}) => {
             {/* navbar */}
             <div className="bg-base-200">
                 <div className='navbar max-w-7xl mx-auto'>
-                    <div className="flex-1">
+                    <div className="flex-1 hidden lg:block">
                         <p onClick={homeNavigate} className="text-primary normal-case text-3xl font-bold hover:cursor-pointer" >Faucets</p>
                     </div>
                     <div className="flex-none">
                         <select className='btn btn-primary rounded-none mr-3' onChange={handleChange}>
                             {
-                                allChoiceCoin?.map(coin => <option className='text-left' key={coin.id} value={coin.name}> {coin?.name.substr(0, 3)} </option>)
+                                allChoiceCoin?.map(coin => <option className='text-left' key={coin.id} value={coin.name}> {coin?.name} </option>)
                             }
                         </select>
 
