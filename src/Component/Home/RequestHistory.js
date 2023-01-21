@@ -10,13 +10,12 @@ const RequestHistory = ({ setHistoryChartReloader, historyChartReloader }) => {
     const [searchType, setSearchType] = useState('EHT');
 
     useEffect(() => {
-        axios.get('https://dry-journey-20353.herokuapp.com/wallet_add')
+        axios.get('http://localhost:5000/secure/api/get_user_wallet')
             .then(function (response) {
                 // handle success
-                console.log(response.data);
-                setAllTransction(response.data);
+                setAllTransction(response?.data);
                 // setTransctionDetails(response.data.filter(item => item.requestAmount.toLowerCase().includes("ETH".toLowerCase())))
-                setTransctionDetails(response.data);
+                setTransctionDetails(response?.data);
                 setHistoryChartReloader(false);
             })
             .catch(function (error) {
@@ -64,7 +63,6 @@ const RequestHistory = ({ setHistoryChartReloader, historyChartReloader }) => {
                                 index={index}
                             ></HistoryTableRow>)
                         }
-
                     </tbody>
                 </table>
             </div>
